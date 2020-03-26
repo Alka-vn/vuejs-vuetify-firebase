@@ -43,6 +43,21 @@
                             <v-img :src="imageUrl"></v-img>
                         </v-col>
                     </v-row>
+                    <v-row>
+                        <v-col cols="12" sm="6" offset-sm="3">
+                            <h4>Choose Date and Time</h4>
+                        </v-col>
+                    </v-row>
+                     <v-row >
+                        <v-col cols="12" sm="6" offset-sm="3">
+                        <v-date-picker v-model="date"></v-date-picker>
+                        </v-col>
+                    </v-row>
+                     <v-row>
+                        <v-col cols="12" sm="6" offset-sm="3">
+                        <v-time-picker v-model="time"></v-time-picker>
+                        </v-col>
+                    </v-row>
                      <v-row>
                         <v-col cols="12" sm="6" offset-sm="3">
                             <v-textarea name="description"
@@ -74,7 +89,9 @@ export default {
             title: '',
             location: '',
             imageUrl: '',
-            description: ''
+            description: '',
+            date : '',
+            time: new Date()
 
         }
     },
@@ -85,6 +102,21 @@ export default {
             this.imageUrl !== ''&&
             this.description !== ''
 
+        },
+        submittableDateTime () {
+            const date = new Date(this.date)
+            if (typeof this.time === 'string'){
+                const hours = this.time.match(/^(\d+)/)[1]
+                const minutes = this.time.match(/:(\d+)/)[1]
+                date.setHours(hours)
+                date.setMinutes(minutes)
+            }
+            else {
+                date.setHours(this.time.getHours())
+                date.setMinutes(this.time.getMinutes())
+            }
+            console.log(date)
+            return date
         }
     },
     methods: {
@@ -97,7 +129,8 @@ export default {
                 location: this.location,
                 imageUrl: this.imageUrl,
                 description: this.description,
-                date : new Date()
+                date : this.submittableDateTime
+                
             }
             this.$store.dispatch('createMeetup',meetupData)
             this.$router.push('/meetups')

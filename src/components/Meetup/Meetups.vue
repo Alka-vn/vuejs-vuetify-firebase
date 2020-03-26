@@ -19,7 +19,9 @@
                                 v-text="meetup.title"
                                 >
                                 </v-card-title>
-                                <v-card-subtitle v-text="meetup.date"></v-card-subtitle>
+                                <v-card-subtitle>
+                                    {{meetup.date | date}}
+                                </v-card-subtitle>
                                 </div>
                             </v-row>
                             <v-row>

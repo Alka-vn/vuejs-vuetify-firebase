@@ -10,17 +10,17 @@
                     <v-img :src="meetup.imageUrl"></v-img>
                     <v-card-text>
                         <div>
-                         <p>{{meetup.date}} - where it takes place</p>
+                         <p>{{meetup.date | date}} - {{meetup.location}} </p>
                         </div>
                         <div>
-                            New York City (NYC), often called the City of New York or simply New York (NY), is the most populous city in the United States. With an estimated 2018 ..
+                            {{meetup.description}}
                         </div>
                     </v-card-text>
-                    <v-card-action >
+                    <v-card-actions>
                             <v-btn block class="primary">
                             Register
                         </v-btn>
-                    </v-card-action>
+                    </v-card-actions>
                 </v-card>
             </div>
             </v-col>
