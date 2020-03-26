@@ -27,8 +27,23 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    createMeetup (state,payload) {
+      state.loadedMeetups.push(payload)
+    }
   },
   actions: {
+    createMeetup ({commit},payload) {
+      const meetup = {
+        title: payload.title,
+        location: payload.location,
+        imageUrl: payload.imageUrl,
+        description: payload.description,
+        date: payload.date,
+        id:'zesrxdyctfuvgbhinj'
+      }
+      //Reachout and store to firbase
+      commit('createMeetup',meetup)
+    }
   },
   getters: {
     loadedMeetups (state) {
