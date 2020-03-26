@@ -1,7 +1,6 @@
 <template>
         <v-container>
             <v-row wrap
-            :justify="justify"
             class="mt-2">
                 <v-col class="text-xs-center text-sm-right">
                     <v-btn large router to="/meetups" class="info">Explore Meetups</v-btn>
@@ -18,16 +17,18 @@
                     :src="item.imageUrl"
                     reverse-transition="fade-transition"
                     transition="fade-transition"
-                    @click="onLoadMeetup(item.item)"
+                    @click="onLoadMeetup(item.id)"
+                    class='justify-center'
                     >
-                    <div class="title">
-                        {{item.title}}
-                    </div>
+                    <v-container class="fill-height align-end justify-center">
+                        <div class="title">
+                            {{item.title}}
+                        </div>    
+                    </v-container>
                     </v-carousel-item>
                 </v-carousel>
             </v-row>
             <v-row wrap
-            :justify="justify"
             class="mt-2">
                <p>Join Our Meetups</p>
             </v-row>
@@ -36,23 +37,13 @@
 
 <script>
 export default {
-    data () {
-        return{
-            justify: 'center',
-            meetups: [
-                {
-                    imageUrl:'https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                    id:'aefkjhigashdjoi',
-                    title:'Meetup in NewYork' 
-                },
-                {
-                    imageUrl:'https://static.toiimg.com/photo/48201473/.jpg',
-                    id:'aefkjhigashdjoi',
-                    title:'Bakers Meetup' 
-                }
-            ]
+
+    computed: {
+        meetups () {
+            return this.$store.getters.featuredMeetups
         }
     },
+
     methods:{
         onLoadMeetup(id){
             this.$router.push('/meetups/'+id)
@@ -62,12 +53,9 @@ export default {
 </script>
 <style scoped>
 .title{
-    position: absolute;
-    bottom: 50px;
     background-color: rgba(0, 0, 0, 0.3);
+    margin: 38px;
+    padding: 15px;
     color: white;
-    padding: 20px;
-    justify-content: center;
-        
 }
 </style>

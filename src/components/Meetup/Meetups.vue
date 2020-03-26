@@ -1,6 +1,6 @@
 <template>
     <v-container>
-            <v-row v-for="meetup in meetups" :key="meetup.id" class="mb-sm-2">
+            <v-row v-for="meetup in meetups" :key="meetup.id" class="mb-2">
                 <v-col cols='12' sm="10" md="8" offset-md="2" offset-sm="1">
                     <v-card class="info" > 
                     <div class="d-flex">
@@ -23,12 +23,12 @@
                                 </div>
                             </v-row>
                             <v-row>
-                                <v-card-action>
+                                <v-card-actions>
                                 <v-btn text :to="'/meetups/'+meetup.id">
                                     <v-icon>mdi-arrow-right</v-icon>
                                     View Meetup
                                 </v-btn>
-                            </v-card-action>
+                            </v-card-actions>
                             </v-row>
                         </v-container>
                     </div>
@@ -40,6 +40,7 @@
 
 <script>
 export default {
+    
     computed: {
         meetups () {
             return this.$store.getters.loadedMeetups

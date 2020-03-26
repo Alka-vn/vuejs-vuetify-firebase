@@ -18,13 +18,13 @@ export default new Vuex.Store({
           title:'Bakers Meetup', 
           date:'24-12-2020'
       }
-  ],
-  user: {
-    id: 'lyktdfghuiopkjh',
-    registeredMeetups: [
-      'aefkjhigashdjoi'
-    ]
-  }
+    ],
+    user: {
+      id: 'lyktdfghuiopkjh',
+      registeredMeetups: [
+        'aefkjhigashdjoi'
+      ]
+    }
   },
   mutations: {
   },

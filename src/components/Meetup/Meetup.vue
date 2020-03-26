@@ -5,12 +5,12 @@
                 <div class="d-flex flex-column justify-start">
                 <v-card>
                     <v-card-title>
-                        <h6 class="primary --text">{{meetup.title}} </h6>
+                        <h6>{{meetup.title}} </h6>
                     </v-card-title>
                     <v-img :src="meetup.imageUrl"></v-img>
                     <v-card-text>
                         <div>
-                            <p>{{meetup.date}} - where it takes place</p>
+                         <p>{{meetup.date}} - where it takes place</p>
                         </div>
                         <div>
                             New York City (NYC), often called the City of New York or simply New York (NY), is the most populous city in the United States. With an estimated 2018 ..
@@ -32,10 +32,13 @@
 
 <script>
 export default {
+
     props: ['id'],
+
     computed: {
         meetup () {
-            return this.$store.getters.loadedMeetup(this.id)
+            console.log(this.id) 
+             return this.$store.getters.loadedMeetup(this.id)
         }
     }
 }
