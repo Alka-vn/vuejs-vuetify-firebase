@@ -1,30 +1,31 @@
 <template>
     <v-container>
-            <v-row>
-                <v-col cols='12'>
-                    <v-card class="info"> 
+            <v-row v-for="meetup in meetups" :key="meetup.id" class="mb-sm-2">
+                <v-col cols='12' sm="10" md="8" offset-md="2" offset-sm="1">
+                    <v-card class="info" > 
                     <div class="d-flex">
                         <v-avatar
                         class = "ma-3"
                         size="125"
                         tile
                         >
-                        <v-img :src="pic"></v-img>
+                        <v-img :src="meetup.imageUrl"></v-img>
                         </v-avatar>
                         <v-container>
                             <v-row>
                                 <div >
                                 <v-card-title
                                 class="headline white--text"
-                                v-text="title"
+                                v-text="meetup.title"
                                 >
                                 </v-card-title>
-                                <v-card-subtitle v-text="details"></v-card-subtitle>
+                                <v-card-subtitle v-text="meetup.date"></v-card-subtitle>
                                 </div>
                             </v-row>
                             <v-row>
                                 <v-card-action>
-                                <v-btn text>
+                                <v-btn text :to="'/meetups/'+meetup.id">
+                                    <v-icon>mdi-arrow-right</v-icon>
                                     View Meetup
                                 </v-btn>
                             </v-card-action>
@@ -39,11 +40,9 @@
 
 <script>
 export default {
-    data () {
-        return {
-            pic:'https://images.pexels.com/photos/313782/pexels-photo-313782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            title:'Meetup at Newyork',
-            details:'Date:12 december 2020'
+    computed: {
+        meetups () {
+            return this.$store.getters.loadedMeetups
         }
     }
 }

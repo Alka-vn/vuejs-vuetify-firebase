@@ -11,13 +11,14 @@
                 </v-col>
             </v-row>
             <v-row class="mt-2">
-                <v-carousel>
+                <v-carousel style="cursor:pointer">
                     <v-carousel-item
                     v-for="(item,i) in meetups"
                     :key="i"
                     :src="item.imageUrl"
                     reverse-transition="fade-transition"
                     transition="fade-transition"
+                    @click="onLoadMeetup(item.item)"
                     >
                     <div class="title">
                         {{item.title}}
@@ -51,10 +52,14 @@ export default {
                 }
             ]
         }
+    },
+    methods:{
+        onLoadMeetup(id){
+            this.$router.push('/meetups/'+id)
+        }
     }
 }
 </script>
-
 <style scoped>
 .title{
     position: absolute;
